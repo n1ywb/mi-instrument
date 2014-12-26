@@ -179,7 +179,7 @@ class DataParticleMixin(DriverTestMixin):
     def assert_data_particle_sample(self, data_particle, verify_values = False):
         '''
         Verify an optaa sample data particle
-        @param data_particle: HYDLFA_SampleDataParticle data particle
+        @param data_particle: HYDLF_SampleDataParticle data particle
         @param verify_values: bool, should we verify parameter values
         '''
         self.assert_data_particle_header(data_particle, DataParticleType.HYDLF_SAMPLE)
@@ -260,7 +260,7 @@ class DriverUnitTest(InstrumentDriverUnitTestCase, DataParticleMixin):
                                     'DRIVER_EVENT_START_AUTOSAMPLE',
                                     'DRIVER_EVENT_START_DIRECT'],
             ProtocolState.AUTOSAMPLE: ['DRIVER_EVENT_STOP_AUTOSAMPLE'],
-            ProtocolState.DIRECT_ACCESS: ['DRIVER_EVENT_STOP_DIRECT', 
+            ProtocolState.DIRECT_ACCESS: ['DRIVER_EVENT_STOP_DIRECT',
                                           'EXECUTE_DIRECT']
         }
 

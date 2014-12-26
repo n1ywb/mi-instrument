@@ -5,9 +5,10 @@
 @brief Driver for the ooicore
 Release notes:
 
-Low Frequency Hydrophone deployed as part of the OBS package. Interface will be through OBS.
+Antelope ORB instruments deployed as part of the OBS package. Interface will be
+through OBS.
 
-Data flow:
+Example Data flow:
 hydrophone -> guralp logger -> seedlink server -> slink2orb -> antelope orb(s)
 -> port agent antelope -> port agent client -> this module
 
@@ -279,7 +280,7 @@ class Protocol(CommandResponseInstrumentProtocol):
         self._protocol_fsm.add_handler(ProtocolState.UNKNOWN, ProtocolEvent.DISCOVER, self._handler_unknown_discover)
 #        self._protocol_fsm.add_handler(ProtocolState.UNKNOWN, ProtocolEvent.START_DIRECT, self._handler_command_start_direct)
         self._protocol_fsm.add_handler(ProtocolState.COMMAND, ProtocolEvent.START_AUTOSAMPLE, self._handler_command_start_autosample)
- 
+
         self._protocol_fsm.add_handler(ProtocolState.COMMAND, ProtocolEvent.ENTER, self._handler_command_enter)
         self._protocol_fsm.add_handler(ProtocolState.COMMAND, ProtocolEvent.EXIT, self._handler_command_exit)
         self._protocol_fsm.add_handler(ProtocolState.COMMAND, ProtocolEvent.START_DIRECT, self._handler_command_start_direct)
