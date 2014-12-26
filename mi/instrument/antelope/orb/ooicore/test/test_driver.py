@@ -57,7 +57,7 @@ from mi.instrument.hightech.hti90u_pa.ooicore.driver import Parameter
 from mi.instrument.hightech.hti90u_pa.ooicore.driver import Protocol
 from mi.instrument.hightech.hti90u_pa.ooicore.driver import Prompt
 from mi.instrument.hightech.hti90u_pa.ooicore.driver import NEWLINE
-from mi.instrument.hightech.hti90u_pa.ooicore.driver import HYDLF_SampleDataParticleKey
+from mi.instrument.hightech.hti90u_pa.ooicore.driver import ORB_SampleDataParticleKey
 
 import pickle
 
@@ -149,18 +149,18 @@ InstrumentDriverTestCase.initialize(
 class DataParticleMixin(DriverTestMixin):
 
     _sample_parameters = {
-        HYDLF_SampleDataParticleKey.CALIB: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['calib']},
-        HYDLF_SampleDataParticleKey.CALPER: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['calper']},
-        HYDLF_SampleDataParticleKey.CHAN: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['chan']},
-        HYDLF_SampleDataParticleKey.LOC: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['loc']},
-        HYDLF_SampleDataParticleKey.NET: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['net']},
-        HYDLF_SampleDataParticleKey.NSAMP: {'type': int, 'value': SHORT_SAMPLE_DICT['channels'][0]['nsamp']},
-        HYDLF_SampleDataParticleKey.SAMPRATE: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['samprate']},
-        HYDLF_SampleDataParticleKey.SEGTYPE: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['segtype']},
-        HYDLF_SampleDataParticleKey.STA: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['sta']},
-        HYDLF_SampleDataParticleKey.TIME: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['time']},
-        HYDLF_SampleDataParticleKey.SAMPLE_IDX: {'type': int, 'value': 0},
-        HYDLF_SampleDataParticleKey.SAMPLE: {'type': int, 'value': SHORT_SAMPLE_DICT['channels'][0]['data'][0]},
+        ORB_SampleDataParticleKey.CALIB: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['calib']},
+        ORB_SampleDataParticleKey.CALPER: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['calper']},
+        ORB_SampleDataParticleKey.CHAN: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['chan']},
+        ORB_SampleDataParticleKey.LOC: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['loc']},
+        ORB_SampleDataParticleKey.NET: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['net']},
+        ORB_SampleDataParticleKey.NSAMP: {'type': int, 'value': SHORT_SAMPLE_DICT['channels'][0]['nsamp']},
+        ORB_SampleDataParticleKey.SAMPRATE: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['samprate']},
+        ORB_SampleDataParticleKey.SEGTYPE: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['segtype']},
+        ORB_SampleDataParticleKey.STA: {'type': unicode, 'value': SHORT_SAMPLE_DICT['channels'][0]['sta']},
+        ORB_SampleDataParticleKey.TIME: {'type': float, 'value': SHORT_SAMPLE_DICT['channels'][0]['time']},
+        ORB_SampleDataParticleKey.SAMPLE_IDX: {'type': int, 'value': 0},
+        ORB_SampleDataParticleKey.SAMPLE: {'type': int, 'value': SHORT_SAMPLE_DICT['channels'][0]['data'][0]},
     }
 
     def assert_sample_data_particle(self, data_particle):
@@ -170,7 +170,7 @@ class DataParticleMixin(DriverTestMixin):
         @param data_particle: Data particle of unknown type produced by the driver
         '''
         sample_dict = self.convert_data_particle_to_dict(data_particle)
-        if (sample_dict[DataParticleKey.STREAM_NAME] == DataParticleType.HYDLF_SAMPLE):
+        if (sample_dict[DataParticleKey.STREAM_NAME] == DataParticleType.ORB_SAMPLE):
             self.assert_data_particle_sample(data_particle)
         else:
             log.error("Unknown Particle Detected: %s" % data_particle)
@@ -179,10 +179,10 @@ class DataParticleMixin(DriverTestMixin):
     def assert_data_particle_sample(self, data_particle, verify_values = False):
         '''
         Verify an optaa sample data particle
-        @param data_particle: HYDLF_SampleDataParticle data particle
+        @param data_particle: ORB_SampleDataParticle data particle
         @param verify_values: bool, should we verify parameter values
         '''
-        self.assert_data_particle_header(data_particle, DataParticleType.HYDLF_SAMPLE)
+        self.assert_data_particle_header(data_particle, DataParticleType.ORB_SAMPLE)
         self.assert_data_particle_parameters(data_particle, self._sample_parameters, verify_values)
 
 ###############################################################################

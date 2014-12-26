@@ -70,8 +70,8 @@ class DataParticleType(BaseEnum):
     """
     RAW = CommonDataParticleType.RAW
 
-    HYDLF_SAMPLE = 'hydlf_sample'
-#    HYDLF_STATUS = 'hydlf_status'
+    ORB_SAMPLE = 'orb_sample'
+#    ORB_STATUS = 'orb_status'
 
 class ProtocolState(BaseEnum):
     """
@@ -134,7 +134,7 @@ class InstrumentCommand(BaseEnum):
 # Data Particles
 ###############################################################################
 
-class HYDLF_SampleDataParticleKey(BaseEnum):
+class ORB_SampleDataParticleKey(BaseEnum):
     # From Packet object
 #    CHANNELS = 'channels'
 #    DB = 'db'
@@ -169,8 +169,8 @@ class HYDLF_SampleDataParticleKey(BaseEnum):
     SAMPLE_IDX = 'sample_idx'
 
 
-class HYDLF_SampleDataParticle(DataParticle):
-    _data_particle_type = DataParticleType.HYDLF_SAMPLE
+class ORB_SampleDataParticle(DataParticle):
+    _data_particle_type = DataParticleType.ORB_SAMPLE
 
     def _build_parsed_values(self):
 
@@ -181,7 +181,7 @@ class HYDLF_SampleDataParticle(DataParticle):
         self.set_internal_timestamp(unix_time=unix_internal_timestamp)
 
         result = []
-        pk = HYDLF_SampleDataParticleKey
+        pk = ORB_SampleDataParticleKey
         vid = DataParticleKey.VALUE_ID
         v = DataParticleKey.VALUE
 
@@ -383,7 +383,7 @@ class Protocol(CommandResponseInstrumentProtocol):
             for index, sample in enumerate(chan['data']):
                 # Yield a new particle
                 # TODO don't hardcode particle class
-                particle = HYDLF_SampleDataParticle(
+                particle = ORB_SampleDataParticle(
                     # TODO: Fix this passing raw_data as tuple hack
                     raw_data = (orb_packet, chan, index, sample),
                     port_timestamp = port_timestamp,
