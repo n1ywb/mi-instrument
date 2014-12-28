@@ -4,6 +4,5 @@ driver_metadata:
   driver_model: hti90u_pa
   driver_name: ooicore
   email: jeff@jefflaughlinconsulting.com
-  release_notes: Low Frequency Hydrophone deployed as part of the OBS package. Interface
-    will be through OBS.
+  release_notes: Antelope ORB driver
   version: 0.0.1

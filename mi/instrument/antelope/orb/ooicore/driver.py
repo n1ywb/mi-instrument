@@ -5,8 +5,7 @@
 @brief Driver for the ooicore
 Release notes:
 
-Antelope ORB instruments deployed as part of the OBS package. Interface will be
-through OBS.
+Antelope ORB driver.
 
 Example Data flow:
 hydrophone -> guralp logger -> seedlink server -> slink2orb -> antelope orb(s)
